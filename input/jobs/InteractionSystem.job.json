@@ -1,0 +1,56 @@
+{
+  "job_meta": {
+    "job_id": "JOB-001",
+    "pack_name": "InteractionSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 1
+  },
+  "product_definition": {
+    "title": "Interaction System",
+    "description": "A modular, trace-based interaction framework for UE5.5. Supports line-trace and sphere-trace detection, interaction UI prompts, hold-to-interact, and contextual interaction data. Fully replicated for multiplayer.",
+    "target_audience": "Indie and AA game developers building first/third-person games",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "Line-trace and sphere-trace based interactable detection",
+      "IInteractable interface with Interact, CanInteract, GetInteractionData",
+      "Hold-to-interact with progress widget",
+      "Interaction prompts using Enhanced Input",
+      "Replicated interaction events via RPCs",
+      "Interaction component attachable to any Actor",
+      "Interactable focus highlight using custom depth stencil",
+      "Priority queue for overlapping interactables"
+    ],
+    "c_plus_plus_modules": ["InteractionSystem"],
+    "blueprint_assets": [
+      "BP_InteractionComponent",
+      "BP_InteractableBase",
+      "WBP_InteractionPrompt",
+      "WBP_HoldProgressBar"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_InteractableBase"],
+      "camera_type": "first_person",
+      "test_scenario": "Player walks up to interactable object, hold-to-interact completes"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}

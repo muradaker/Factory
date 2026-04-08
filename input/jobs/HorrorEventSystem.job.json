@@ -1,0 +1,59 @@
+{
+  "job_meta": {
+    "job_id": "JOB-006",
+    "pack_name": "HorrorEventSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 6
+  },
+  "product_definition": {
+    "title": "Horror Event System",
+    "description": "A dynamic horror event and atmosphere management system for UE5.5. Drives scripted scare sequences, ambient audio layering, light flicker, entity spawning, sanity mechanics, and jump scare orchestration via an event timeline.",
+    "target_audience": "Horror game developers targeting atmospheric single-player experiences",
+    "ue_version": "5.5",
+    "multiplayer_aware": false
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UHorrorEventSubsystem as world subsystem managing event queue",
+      "Event timeline asset: ordered list of HorrorEventSteps",
+      "Event types: LightFlicker, SoundSting, EntitySpawn, CameraShake, JumpScare, SanityDrain",
+      "USanityComponent: sanity float, hallucination trigger threshold",
+      "Hallucination system: spawns illusory actors visible only to local player",
+      "Ambient audio layering: calm, tense, danger states with crossfade",
+      "Jump scare director: positions entity in FOV, triggers sting then despawns",
+      "Post-process sanity effect: vignette, chromatic aberration, desaturation",
+      "Debug visualizer: event timeline progress overlay",
+      "Blueprint callable event triggers for designer control"
+    ],
+    "c_plus_plus_modules": ["HorrorEventSystem"],
+    "blueprint_assets": [
+      "BP_HorrorEventDirector",
+      "BP_SanityComponent",
+      "BP_HallucinationActor",
+      "DA_HorrorTimeline_Default",
+      "WBP_SanityOverlay"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_HorrorEventDirector"],
+      "camera_type": "first_person",
+      "test_scenario": "Player walks through corridor, lights flicker, entity spawns, sanity drains"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": false,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": false
+  }
+}

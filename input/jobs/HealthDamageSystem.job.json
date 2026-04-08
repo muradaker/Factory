@@ -1,0 +1,60 @@
+{
+  "job_meta": {
+    "job_id": "JOB-003",
+    "pack_name": "HealthDamageSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 3
+  },
+  "product_definition": {
+    "title": "Health & Damage System",
+    "description": "A GAS-based health, damage, and status effect system for UE5.5. Supports multiple damage types, damage modifiers, shield layer, regeneration, death handling, and hit reactions. Integrates with Gameplay Ability System.",
+    "target_audience": "Action, RPG, and shooter game developers",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UHealthComponent integrated with GAS AttributeSet",
+      "UHealthAttributeSet: Health, MaxHealth, Shield, MaxShield, Regen",
+      "Damage types as GameplayEffects: Physical, Fire, Poison, True",
+      "Status effects: Burning, Poisoned, Stunned, Slowed via GE",
+      "Shield layer that absorbs damage before health",
+      "Health regeneration via GE with period",
+      "Death handling with ragdoll and respawn policy",
+      "Hit reaction montage trigger on damage received",
+      "Replicated health bar widget",
+      "Damage number popup widget"
+    ],
+    "c_plus_plus_modules": ["HealthDamageSystem"],
+    "blueprint_assets": [
+      "BP_HealthComponent",
+      "GE_Damage_Physical",
+      "GE_Damage_Fire",
+      "GE_StatusEffect_Burning",
+      "WBP_HealthBar",
+      "WBP_DamageNumber"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_TestDummy"],
+      "camera_type": "third_person",
+      "test_scenario": "Player applies damage to dummy, health bar updates, status effect applied"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}

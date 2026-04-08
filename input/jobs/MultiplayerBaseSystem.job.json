@@ -1,0 +1,60 @@
+{
+  "job_meta": {
+    "job_id": "JOB-005",
+    "pack_name": "MultiplayerBaseSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 5
+  },
+  "product_definition": {
+    "title": "Multiplayer Base System",
+    "description": "A foundational multiplayer framework for UE5.5. Covers session management, lobby, team assignment, player state synchronization, server-side validation, and latency compensation utilities. Built on OnlineSubsystem.",
+    "target_audience": "Multiplayer game developers targeting PC and console",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "Session management: Create, Find, Join, Destroy sessions",
+      "Lobby subsystem with ready-check and player list replication",
+      "Team assignment system with balanced auto-assign",
+      "UMythPlayerState with replicated team, score, ping",
+      "UMythGameState with match timer, phase, team scores",
+      "Server-side position validation (anti-cheat)",
+      "Lag compensation via rewind buffer for hit detection",
+      "Travel management: seamless travel with state persistence",
+      "Replicated chat system (team + all chat)",
+      "Network stats HUD widget (ping, packet loss)"
+    ],
+    "c_plus_plus_modules": ["MultiplayerBaseSystem"],
+    "blueprint_assets": [
+      "BP_MythGameMode",
+      "BP_MythPlayerState",
+      "BP_MythGameState",
+      "BP_LobbyGameMode",
+      "WBP_LobbyScreen",
+      "WBP_NetworkStats"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight"],
+      "camera_type": "first_person",
+      "test_scenario": "Two clients connect, join teams, ready-check completes, seamless travel"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}

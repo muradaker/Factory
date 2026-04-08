@@ -1,0 +1,59 @@
+{
+  "job_meta": {
+    "job_id": "JOB-008",
+    "pack_name": "SoundNoiseSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 8
+  },
+  "product_definition": {
+    "title": "Sound & Noise System",
+    "description": "A gameplay-relevant noise emission and hearing system for UE5.5. Actors emit noise events that propagate through the AI Perception system, attenuated by distance and material occlusion. Used for stealth, AI awareness, and sound-based puzzles.",
+    "target_audience": "Stealth, horror, and immersive sim game developers",
+    "ue_version": "5.5",
+    "multiplayer_aware": false
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UNoiseEmitterComponent: emits tagged noise events with loudness and range",
+      "UNoiseHearingComponent: receives filtered noise events, raises OnNoiseHeard delegate",
+      "Noise tags: Footstep, Gunshot, Explosion, Voice, Object, Ambient",
+      "Distance attenuation with inverse-square falloff",
+      "Material occlusion: raycast checks wall materials, attenuates by occlusion factor",
+      "AI Perception bridge: reports hearing stimuli to UAIPerceptionSystem",
+      "Surface material DataAsset: footstep sound sets per physical material",
+      "Noise visualization debug draw: spheres with loudness radius",
+      "Footstep automation: tag-driven footstep emission on character movement",
+      "Blueprint callable: MakeNoise(NoiseTag, Loudness, Location)"
+    ],
+    "c_plus_plus_modules": ["SoundNoiseSystem"],
+    "blueprint_assets": [
+      "BP_NoiseEmitterComponent",
+      "BP_NoiseHearingComponent",
+      "DA_SurfaceSoundSet_Concrete",
+      "DA_SurfaceSoundSet_Grass",
+      "DA_SurfaceSoundSet_Metal"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_AIEnemyWithHearing"],
+      "camera_type": "third_person",
+      "test_scenario": "Player walks on metal surface near AI, footstep noise triggers AI awareness"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": false,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": false
+  }
+}

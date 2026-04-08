@@ -1,0 +1,60 @@
+{
+  "job_meta": {
+    "job_id": "JOB-004",
+    "pack_name": "AIBehaviorSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 4
+  },
+  "product_definition": {
+    "title": "AI Behavior System",
+    "description": "A modular AI behavior framework for UE5.5 using Behavior Trees, EQS, and AI Perception. Includes patrol, chase, attack, flee, and investigate states. Supports squads and AI communication via GameplayMessages.",
+    "target_audience": "Action, stealth, and open-world game developers",
+    "ue_version": "5.5",
+    "multiplayer_aware": false
+  },
+  "implementation_scope": {
+    "core_features": [
+      "Base AIController with BehaviorTree integration",
+      "Blackboard keys: TargetActor, LastKnownLocation, PatrolIndex, AlertLevel",
+      "Patrol task: BTTask_Patrol with patrol point array",
+      "Chase task: BTTask_MoveToTarget with dynamic re-pathing",
+      "Attack task: BTTask_MeleeAttack and BTTask_RangedAttack",
+      "EQS query for cover point selection",
+      "AI Perception: sight, hearing, damage",
+      "Alert system: Unaware, Suspicious, Alerted states",
+      "Squad communication via UGameplayMessageSubsystem",
+      "Debug draw: perception cone, patrol path, state label"
+    ],
+    "c_plus_plus_modules": ["AIBehaviorSystem"],
+    "blueprint_assets": [
+      "BP_AIControllerBase",
+      "BT_EnemyBase",
+      "BB_EnemyBase",
+      "EQS_FindCover",
+      "BP_PatrolPoint",
+      "BP_EnemyCharacter"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_EnemyCharacter", "BP_PatrolPoint"],
+      "camera_type": "third_person",
+      "test_scenario": "Enemy patrols between points, detects player, chases and attacks"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": false,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": false
+  }
+}
