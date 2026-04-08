@@ -1,0 +1,60 @@
+{
+  "job_meta": {
+    "job_id": "JOB-009",
+    "pack_name": "UIFramework",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 9
+  },
+  "product_definition": {
+    "title": "UI Framework",
+    "description": "A production-ready UMG UI framework for UE5.5. Provides a widget manager subsystem, screen stack navigation, modal dialog system, animated transitions, data binding via MVVM, and a complete HUD composition pipeline.",
+    "target_audience": "Game developers who want a scalable, designer-friendly UI architecture",
+    "ue_version": "5.5",
+    "multiplayer_aware": false
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UUIManagerSubsystem: push/pop widget stack, show/hide named screens",
+      "UScreenBase: base widget class with OnShow, OnHide, animated transitions",
+      "Modal dialog system: OK, OKCancel, custom button layouts",
+      "UMythViewModel base class for MVVM data binding",
+      "Tooltip system: hover-triggered tooltips with configurable delay",
+      "Notification/toast system: queue-based, auto-dismiss with icon and message",
+      "Focus management for controller/gamepad navigation",
+      "HUD compositor: slot-based HUD regions (top-left, center, etc.)",
+      "Loading screen manager with background image and progress bar",
+      "Localization-ready: all text via FText with string table keys"
+    ],
+    "c_plus_plus_modules": ["UIFramework"],
+    "blueprint_assets": [
+      "WBP_ScreenBase",
+      "WBP_ModalDialog",
+      "WBP_ToastNotification",
+      "WBP_LoadingScreen",
+      "WBP_HUDCompositor",
+      "WBP_Tooltip"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight"],
+      "camera_type": "first_person",
+      "test_scenario": "HUD displays on game start, modal dialog opens on key press, toast notification shown"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": false,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": false
+  }
+}

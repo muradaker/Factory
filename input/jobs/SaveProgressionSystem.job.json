@@ -1,0 +1,59 @@
+{
+  "job_meta": {
+    "job_id": "JOB-010",
+    "pack_name": "SaveProgressionSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 10
+  },
+  "product_definition": {
+    "title": "Save & Progression System",
+    "description": "A robust save and player progression system for UE5.5. Supports multiple save slots, async save/load, player level and XP tracking, achievement unlocks, persistent world state, and cloud save readiness via abstract backend interface.",
+    "target_audience": "RPG, action-adventure, and roguelite game developers",
+    "ue_version": "5.5",
+    "multiplayer_aware": false
+  },
+  "implementation_scope": {
+    "core_features": [
+      "USaveProgressionSubsystem: centralized save coordination",
+      "Multiple save slots with metadata (timestamp, playtime, level, thumbnail)",
+      "Async save and load via background thread, OnSaveComplete delegate",
+      "UProgressionComponent: XP, player level, level-up events",
+      "Achievement system: DataAsset-driven achievement definitions, unlock tracking",
+      "Persistent world state: doors opened, items collected, flags set",
+      "ISaveableActor interface: SaveState() / LoadState() per-actor contract",
+      "Versioned save format with migration support",
+      "Cloud save abstraction: ICloudSaveBackend interface for EOS/Steam",
+      "Save slot UMG widget: thumbnail, playtime, delete confirmation"
+    ],
+    "c_plus_plus_modules": ["SaveProgressionSystem"],
+    "blueprint_assets": [
+      "BP_SaveProgressionSubsystem",
+      "BP_ProgressionComponent",
+      "DA_Achievement_Example",
+      "WBP_SaveSlotList",
+      "WBP_SaveSlotEntry"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_SaveTrigger"],
+      "camera_type": "third_person",
+      "test_scenario": "Player collects item, saves game, reloads scene, item remains collected"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": false,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": false
+  }
+}

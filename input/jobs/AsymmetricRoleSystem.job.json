@@ -1,0 +1,61 @@
+{
+  "job_meta": {
+    "job_id": "JOB-011",
+    "pack_name": "AsymmetricRoleSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 11
+  },
+  "product_definition": {
+    "title": "Asymmetric Role System",
+    "description": "A multiplayer asymmetric role assignment and ability framework for UE5.5. Supports games where players have distinct roles with unique abilities, win conditions, and UI (e.g. killer vs survivors, impostor vs crew). Built on GAS.",
+    "target_audience": "Multiplayer game developers building asymmetric horror, social deduction, or party games",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "URoleDefinitionDataAsset: role name, abilities, win condition, HUD config",
+      "URoleAssignmentComponent: server-assigns roles, replicates to clients",
+      "Per-role GAS ability sets granted on role assignment",
+      "Role-locked input bindings via Enhanced Input action mapping per role",
+      "Win condition evaluator: monitors game state, declares winner by role",
+      "Role-specific HUD overlay switching on role assignment",
+      "Observer/spectator role with free camera",
+      "Role reveal sequence: cinematic-style role announcement",
+      "Team victory screen with role statistics",
+      "Blueprint override points: OnRoleAssigned, OnRoleWin, OnRoleLose"
+    ],
+    "c_plus_plus_modules": ["AsymmetricRoleSystem"],
+    "blueprint_assets": [
+      "BP_RoleAssignmentComponent",
+      "DA_Role_Killer",
+      "DA_Role_Survivor",
+      "WBP_RoleRevealScreen",
+      "WBP_KillerHUD",
+      "WBP_SurvivorHUD",
+      "WBP_VictoryScreen"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight"],
+      "camera_type": "third_person",
+      "test_scenario": "Two players connect, one assigned Killer role, one Survivor, each sees role-specific HUD"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}

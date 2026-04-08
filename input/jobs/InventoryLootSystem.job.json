@@ -1,0 +1,61 @@
+{
+  "job_meta": {
+    "job_id": "JOB-002",
+    "pack_name": "InventoryLootSystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 2
+  },
+  "product_definition": {
+    "title": "Inventory & Loot System",
+    "description": "A data-driven inventory and loot generation system for UE5.5. Features grid-based inventory UI, item stacking, item rarity tiers, loot tables with weighted probability, and item dropping/picking up. Full multiplayer replication.",
+    "target_audience": "RPG, survival, and action game developers",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UInventoryComponent with slot-based grid storage",
+      "UItemDataAsset (DataAsset) defining item stats, icon, mesh, rarity",
+      "Loot table DataAsset with weighted random item rolls",
+      "Item stacking and max-stack enforcement",
+      "Drop item as world pickup actor with physics",
+      "Pick up item with overlap detection",
+      "Replicated inventory changes via RPC + OnRep",
+      "Save/load inventory serialization",
+      "UMG inventory grid widget (drag and drop)",
+      "Item rarity tiers: Common, Uncommon, Rare, Epic, Legendary"
+    ],
+    "c_plus_plus_modules": ["InventoryLootSystem"],
+    "blueprint_assets": [
+      "BP_InventoryComponent",
+      "BP_WorldPickup",
+      "WBP_InventoryGrid",
+      "WBP_ItemSlot",
+      "WBP_ItemTooltip",
+      "DA_LootTable_Default",
+      "DA_Item_Example"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_WorldPickup"],
+      "camera_type": "third_person",
+      "test_scenario": "Player walks over pickup, item appears in inventory grid"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}

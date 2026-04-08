@@ -1,0 +1,61 @@
+{
+  "job_meta": {
+    "job_id": "JOB-012",
+    "pack_name": "QuotaEconomySystem",
+    "version": "1.0.0",
+    "created_at": "2025-01-01T00:00:00Z",
+    "priority": 12
+  },
+  "product_definition": {
+    "title": "Quota & Economy System",
+    "description": "A flexible quota-driven economy system for UE5.5. Tracks player-submitted items against rotating quotas, calculates value, applies profit/penalty, and drives an in-game shop and upgrade tree. Inspired by extraction and delivery-loop games.",
+    "target_audience": "Extraction, delivery, and scavenging game developers (e.g. Lethal Company-style)",
+    "ue_version": "5.5",
+    "multiplayer_aware": true
+  },
+  "implementation_scope": {
+    "core_features": [
+      "UQuotaSubsystem: current quota target, deadline days, submitted value tracking",
+      "Quota rotation: generates new quota on deadline with scaling difficulty",
+      "Item value registry: DataAsset mapping item tags to base value + condition multiplier",
+      "Deposit terminal actor: players submit items, value calculated server-side",
+      "Profit distribution to players proportionally",
+      "Penalty system: lose credits/health on failed quota",
+      "UShopSubsystem: rotating shop inventory, purchase validation",
+      "Upgrade tree: DataAsset-driven upgrades unlocked with credits",
+      "Multiplayer sync: all economy state server-authoritative, replicated",
+      "Economy HUD: quota progress bar, credits display, deadline counter"
+    ],
+    "c_plus_plus_modules": ["QuotaEconomySystem"],
+    "blueprint_assets": [
+      "BP_DepositTerminal",
+      "BP_ShopTerminal",
+      "DA_ItemValueRegistry",
+      "DA_UpgradeTree",
+      "WBP_QuotaHUD",
+      "WBP_ShopScreen",
+      "WBP_UpgradeScreen"
+    ],
+    "demo_map_requirements": {
+      "required_actors": ["PlayerStart", "DirectionalLight", "SkyLight", "BP_DepositTerminal", "BP_ShopTerminal"],
+      "camera_type": "third_person",
+      "test_scenario": "Player picks up item, deposits at terminal, quota progress updates, shop purchase succeeds"
+    }
+  },
+  "output_requirements": {
+    "uplugin": true,
+    "source_code": true,
+    "demo_map": true,
+    "documentation": true
+  },
+  "generation_policy": {
+    "max_heal_passes": 3,
+    "require_multiplayer_test": true,
+    "fab_publish": true
+  },
+  "review_gates": {
+    "require_build": true,
+    "require_runtime_qa": true,
+    "require_multiplayer_qa": true
+  }
+}
